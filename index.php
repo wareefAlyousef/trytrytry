@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
     <body>
         <?php
             echo "<h1>hellow world</h1>";
-            echo "<br><p>from waref</p>";
+            echo "<br><p>from waref try try try</p>";
         ?>
     </body>
 </html>
