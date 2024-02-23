@@ -14,6 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
             echo "<br><p>from waref try try try</p>";
             echo "<p>this echo from anathor divise</p>";
             echo "<p>this echo from the first divise</p>";
+            echo "<p>this echo from anathor divise</p>";
         ?>
     </body>
 </html>
