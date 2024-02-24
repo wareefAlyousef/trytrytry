@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Amiri&display=swap');
+
+body{
+    background-color: #f1efed;
+    color: #262727;
+    font-family: 'Amiri', serif;
+}
+
+/*top bar*/
+.logo{
+    width:12%;
+    height: 12%;
+    margin-left: 1rem;
+}
+
+#topBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1efed;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0em 0em 2em #ccc;
+    top: 0;
+    z-index: 1000;
+}
+  
+
+#logout{
+    text-align: right;
+    margin-right: 1rem;
+    background-color: #4b4d43;
+    color:#f1efed;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    font-size: 1.37rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#logout:hover{
+    text-decoration: none;
+    background-color: #2d1e1f;
+    transition: 0.3s; 
+}
+/*end top bar*/
+
+/*home image*/
+#grid-home{
+    padding:4rem;
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+    background-image: url("images/backHome.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text{
+    background-color: #f1efedcb;
+    padding: 1rem;
+    width: 40rem;
+    text-align: center;
+    font-size: 1.37rem;
+}
+
+#welcome{
+    font-size: 2.7rem;
+}
+
+#textWrapper{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+/*end home image*/
+
+/*footer*/
+footer {
+    background-color: #d6d3cb;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.social-media-icons img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.1rem;
+}
+
+#email{
+    text-decoration: none;
+    color: #262727;
+}
+/*end footer*/

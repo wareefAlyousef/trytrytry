@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="projectAddition.css">
+        <link rel="stylesheet" href="basic.css">
+        <title>update page </title>
+    </head>
+    <body>
+        <header id="topBar">
+            <a href="designerHomePage.html"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
+            <a id="logout" href="index.html">Log-out</a>
+        </header>
+        
+        <main>
+
+            <div id="grid-home2">
+                <div id="textWrapper">
+                    <p class="text">
+                        <strong id="welcome"> Update project </strong>
+                    </p>
+                </div>
+            </div>
+
+
+            
+            <div class="info">
+                <h1>New Project</h1>
+                <form action="designerHomePage.html" method="post" >
+
+                    <div class="item">
+                        <label for="name">Project Name:</label> <br>
+                        <input type="text" id="name" name="name" value="Bright Oasis" placeholder="Enter your project's name" required>
+                    </div> <br>
+
+            
+                    <label for="image">Upload file:</label><br>
+                    <input type='file' id='image' name='image'> <br><br>
+
+                    <div class="item">
+                        <label for="name">Design Category:</label> <br>
+                        <select>
+                            <option value="modern">Modern</option>
+                            <option value="coastal">Coastal</option>
+                            <option value="countrt">Country</option>
+                            <option value="bohemian">Bohemian</option>
+                          </select>
+                    </div> <br>
+
+                    <div class="item">
+                        <label for="description">Project Description:</label> <br>
+                        <textarea id="description" name="name"  placeholder="A cozy and bright living area with a mix of modern and bohemian elements, featuring large windows, wooden accents, and abstract art." rows="8" cols="50"></textarea>
+                    </div> <br>
+            
+                    <input type='submit' value='Send' id="submitButten1">
+                 </form> 
+               
+            </div>
+
+        </div>
+
+
+
+
+
+            
+        </main>
+
+        <footer>
+            <p>Contact Us |Phone: 0116753695  |Email: <a id="email" href="mailto:LuminousDesign@LuminousDesign.com">LuminousDesign@LuminousDesign.com</a></p>
+            <p>Follow Us</p>
+            <div class="social-media-icons">
+                <a href=""><img src="images/x.png" alt="x icon" ></a>
+                <a href=""><img src="images/f.png" alt="facebook icon"></a>                
+                <a href=""><img src="images/insta.png" alt="instagram icon"></a>                
+                <a href=""><img src="images/in.png" alt="linkedIn icon"></a>  
+                <a href=""><img src="images/p.PNG" alt="pintrest icon"></a>
+                <a href=""><img src="images/t.png" alt="tiktok icon"></a>          
+            </div>
+            <p>© 2024 Luminous Design, All Rights Reserved.</p>
+        </footer>
+        
+    </body>
+</html>

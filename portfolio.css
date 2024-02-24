@@ -1,0 +1,152 @@
+#grid-home2{
+    padding:4rem;
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+    background-image: url("images/spacejoy-YnLJ3rM4VtI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*clint infor mation*/
+.info {
+    background-color: #f1efed;
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #888888;;
+}
+  
+.info h1 {
+    font-size: 2.5rem;
+    background-color: #4B4D43;
+    color:#f2f2f2;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 2.7rem;
+    border-radius: 10px;
+}
+    
+.info p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    
+}
+  
+.p{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-left: 9rem;
+    margin-right: 2rem;
+    position: relative;
+    bottom: 8rem;
+    margin-bottom: -8rem;
+}
+  
+.info img {
+    width: 100px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+    position:relative;
+    bottom: 4.5rem;
+    left:1rem
+}
+  
+.info strong {
+    font-weight: bold;
+}
+  
+.preference{
+    border: 1.5px solid #ccc;
+    border-radius: 20px;
+    padding: 0.1rem;
+    background-color: #f7f6f5;
+}
+  
+/*end clint infor mation*/
+
+
+/*disines grid*/
+.allDesigns{
+    background-color:#4B4D43;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #888888;
+}
+  
+.allDesigns h1{
+    color:#f1efed;
+    text-align: center;
+    padding-top: 1rem;
+    margin-bottom:-0.1rem;
+}
+  
+.designs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+  
+.design {
+    background-color: #f1efed;
+    margin: 2rem;
+    text-align: center;
+    padding: 01rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+.slider-container {
+    position: relative;
+    max-width: 100%; 
+    overflow: hidden;
+    margin: 0 auto; 
+}
+ 
+ 
+.design h2 {
+    margin-top: 10px; 
+}
+  
+.design a {
+    color:#262727;
+    text-decoration: none; 
+}
+  
+.design p.specialty {
+    margin-top: -10px;
+}
+
+#consultcontainer{
+    text-align: center;
+}
+
+a.consult{
+    text-decoration: none;
+    color: #F1EFED;
+    background-color: #493133;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px; 
+    text-align: center;
+}
+  
+a.consult:hover {
+    background-color: #F1EFED;
+    color:#493133;
+}
+/*end disines grid*/

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="signUp.css">
+        <script src="signUp.js"></script>
+        <title> Sign up </title>
+    </head>
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+          
+              <!-- Icon -->
+                <div class="fadeIn first">
+                  <a href="index.html">
+                    <img src="images/lightBeigeLogo.png" id="icon" alt="User Icon" />
+                    </a>
+                </div>
+
+
+
+                <div class="fadeIn second">
+                      <fieldset>
+          
+
+                        <legend><h1>Sign up</h1></legend>
+                        <div class="middle">
+                            <h2>User type:</h2>
+                            <label>
+                              <input type="radio" name="type" value="designer"onclick="showdesigner()"/>
+                              <div class="front-end box">
+                                <span>Designer</span>
+                              </div>
+                            </label>
+                          
+                            <label>
+                              <input type="radio" name="type" value="client" onclick="showclient()"/>
+                              <div class="back-end box">
+                                <span>Client</span>
+                              </div>
+                            </label>
+                          </div>
+
+                          <form action="clientHomepage.html" method="" class="hide" id="cform">
+                            <h2> Account info</h2> <br> 
+                            <div class="input">
+                              <input type="text" id="fname" class="input-field" required/>
+                              <label for="fname" class="input-label">First Name</label>
+                          </div>
+
+                          <div class="input">
+                            <input type="text" id="lname" class="input-field" required/>
+                            <label for="lname" class="input-label">Last Name</label>
+                        </div>
+
+
+                        <div class="input">
+                          <input type="email" id="email" class="input-field" required/>
+                          <label for="email" class="input-label">Email</label>
+                      </div>
+  
+                          <div class="input">
+                              <input type="password" id="pass" class="input-field" required/>
+                              <label for="pass" class="input-label">Password</label>
+                          </div>
+
+                          <p>Profile picture:</p>  
+
+                          <div class="input">
+                            <input type="file" id="logo" name="logo" accept="image/*">
+                        </div>
+
+                        <p>Prefrence:</p> 
+                        <div class="input" id="checks">
+  
+                          <label class="pill">
+                            <input type="checkbox" value="modern" class="pill-checkbox" />
+                            <span class="pill-label">Modern</span>
+                          </label>
+                          
+                          <label class="pill">
+                            <input type="checkbox" value="coastal" class="pill-checkbox" />
+                            <span class="pill-label">Traditional</span>
+                          </label>
+  
+                          <label class="pill">
+                            <input type="checkbox" value="country" class="pill-checkbox" />
+                            <span class="pill-label">Country</span>
+                          </label>
+  
+                          <label class="pill">
+                            <input type="checkbox" value="bohemian" class="pill-checkbox" />
+                            <span class="pill-label">Bohemian</span>
+                          </label>
+                          
+    
+  
+                    
+                          </div>
+
+
+                          <input type="submit" class="fadeIn third" id="button" value="Sign up">
+
+                          </form>
+
+
+
+                          <form action="designerHomePage.html" method="" class="hide" id="dform">
+                            <h2> Account info</h2> <br> 
+                            <div class="input">
+                              <input type="text" id="fname" class="input-field" required/>
+                              <label for="fname" class="input-label">First Name</label>
+                          </div>
+
+                          <div class="input">
+                            <input type="text" id="lname" class="input-field" required/>
+                            <label for="lname" class="input-label">Last Name</label>
+                        </div>
+
+                        <div class="input">
+                          <input type="email" id="email" class="input-field" required/>
+                          <label for="email" class="input-label">Email</label>
+                      </div>
+  
+                          <div class="input">
+                              <input type="password" id="pass" class="input-field" required/>
+                              <label for="pass" class="input-label">Password</label>
+                          </div>
+
+                          <h2> Brand info</h2> <br> 
+                          <div class="input">
+                            <input type="text" id="bname" class="input-field" required/>
+                            <label for="bname" class="input-label">Brand Name</label>
+                        </div> 
+
+                        <p>Brand Logo:</p>  
+
+                        <div class="input">
+                          <input type="file" id="logo" name="logo" accept="image/*">
+                      </div>
+                      <p>Speciality:</p> 
+                      <div class="input" id="checks">
+
+                        <label class="pill">
+                          <input type="checkbox" value="modern" class="pill-checkbox" />
+                          <span class="pill-label">Modern</span>
+                        </label>
+                        
+                        <label class="pill">
+                          <input type="checkbox" value="coastal" class="pill-checkbox" />
+                          <span class="pill-label">Traditional</span>
+                        </label>
+
+                        <label class="pill">
+                          <input type="checkbox" value="country" class="pill-checkbox" />
+                          <span class="pill-label">Country</span>
+                        </label>
+
+                        <label class="pill">
+                          <input type="checkbox" value="bohemian" class="pill-checkbox" />
+                          <span class="pill-label">Bohemian</span>
+                        </label>
+                        
+  
+
+                  
+                        </div>
+
+
+                  <input type="submit" class="fadeIn third" id="button" value="Sign up">
+
+                          </form>
+                          
+                </div>
+
+
+          
+
+              <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    Already have an account? <a class="underlineHover" href="logIn.html">Log in</a>
+                </div>
+          
+            </div>
+          </div>
+
+        
+    </body>
+</html>
