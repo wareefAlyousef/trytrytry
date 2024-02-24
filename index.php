@@ -15,7 +15,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
             echo "<p>this echo from anathor divise</p>";
             echo "<p>this echo from the first divise</p>";
             echo "<p>this echo from anathor divise</p>";
-            echo "IT Woooooooooooooorked on Rana's device ;) ^^"
+            echo "IT Woooooooooooooorked on Rana's device ;) ^^";
+            echo "shokraaannn wareeefffffff";
         ?>
     </body>
 </html>
