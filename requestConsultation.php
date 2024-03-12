@@ -1,4 +1,16 @@
 
+<?php
+
+// Get designer ID from query string
+$designerId = isset($_GET['designerId']) ? (int)$_GET['designerId'] : null;
+
+if (!$designerId) {
+  // Handle error: missing designer ID
+  echo "Error: Designer ID not provided.";
+  exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -66,7 +78,9 @@
 
 
                         </label><br><br>
-                                               
+                        
+                        <input type="hidden" name="designerId" value="<?php echo $designerId; ?>">
+
                         
                     <div class="submit-container">
                         <input type='submit' value='Send' id="submitButten1">
