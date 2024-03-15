@@ -8,7 +8,7 @@ if($error != null){
 }             
 else{ 
     
-    if(isset($_POST['email'])){
+    if(isset($_POST['email']) && $_POST['submit']){
        $select = "SELECT * FROM `designer` WHERE `emailAddress` = ?";
         $stmt = $connection->prepare($select);
         $stmt->bind_param("s", $_POST['email']);
@@ -20,16 +20,24 @@ else{
         }
     }
         
-    if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['bname']) && isset($_POST['speciality'])) {
+    if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['bname']) && isset($_POST['speciality']) && isset($_POST['submit']) && isset($_FILES["logo"]) && $_FILES["logo"]["error"] == 0) {
         $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
         
           //do image
+        $temp_name = $_FILES['logo']['tmp_name'];
+        $path_parts = pathinfo($_FILES["logo"]["name"]); //  to change file name
+        $extension = $path_parts['extension']; //get extension
+        $filenewname=$_POST['email'].".".$extension; // newname.extension
+        $folder = "images/".$filenewname; //create path to put image
+
+      if (move_uploaded_file($temp_name, $folder)) {
+            //finishes image
         
        
         
         $sql = "INSERT INTO `designer` (`firstName`, `lastName`, `emailAddress`, `password`, `brandName`, `logoImgFileName`) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("ssssss", $_POST['fname'], $_POST['lname'], $_POST['email'], $pass, $_POST['bname'],$_POST['logo']);
+        $stmt->bind_param("ssssss", $_POST['fname'], $_POST['lname'], $_POST['email'], $pass, $_POST['bname'],$filenewname);
         $stmt->execute();
         $lastInsertedID =$stmt->insert_id;
         $_SESSION["userID"]=$lastInsertedID;
@@ -42,6 +50,11 @@ else{
         
         header('Location:designerHomePage.html'); //change when code is ready
         exit();
+        
+        }else{
+
+        echo "Failed to upload image";}
+        
     }
 }
 ?>

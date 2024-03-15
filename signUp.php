@@ -69,7 +69,7 @@ session_start();
 
 
 
-                          <input type="submit" class="fadeIn third" id="button" value="Sign up">
+                          <input type="submit" name="submit" class="fadeIn third" id="button" value="Sign up">
 
                           </form>
 
@@ -106,7 +106,7 @@ session_start();
                         <p>Brand Logo:</p>  
 
                         <div class="input">
-                          <input type="file" name="logo" id="logo" accept="image/*">
+                            <input type="file" name="logo" id="logo" accept="image/*">
                       </div>
                       <p>Speciality:</p> 
                       <div class="input" id="checks">
@@ -136,7 +136,7 @@ session_start();
                         </div>
 
 
-                  <input type="submit" class="fadeIn third" id="button" value="Sign up">
+                      <input type="submit" name="submit" class="fadeIn third" id="button" value="Sign up">
 
                           </form>
                           
