@@ -21,18 +21,18 @@
 
 
                 <div class="fadeIn second">
-                    <form name="logInForm" action="" method="post" class="form" id="logIn">
+                    <form name="logInForm" action="loginCheck.php" method="POST" class="form" id="logIn">
                         <fieldset>
 
                         <legend><h1>Log in</h1></legend>
                         <h2> Account info:</h2> <br> 
                         <div class="input">
-                            <input type="email" id="email" class="input-field" required/>
+                            <input type="email" name='email' id="email" class="input-field" required/>
                             <label for="email" class="input-label">Email</label>
                         </div>
 
                         <div class="input">
-                            <input type="password" id="pass" class="input-field" required/>
+                            <input type="password" name='pass' id="pass" class="input-field" required/>
                             <label for="pass" class="input-label">Password</label>
                         </div>
                         <br>
@@ -50,7 +50,7 @@
                                     </label>
                             </div>
 
-                        <input type="submit" class="fadeIn third" id="button" value="Log in" onclick=" checkuser()">
+                        <input type="submit" class="fadeIn third" id="button" value="Log in" >
                     </fieldset>
                     </form>
                 </div>
@@ -61,7 +61,7 @@
 
               <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    Don't have an account? <a class="underlineHover" href="signUp.html">Sign up</a>
+                    Don't have an account? <a class="underlineHover" href="signUp.php">Sign up</a>
                 </div>
           
             </div>

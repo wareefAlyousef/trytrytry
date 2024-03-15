@@ -28,7 +28,7 @@
           
 
                 <div id="formFooter" >
-                    Don't have an account? <a class="underlineHover" href="signUp.html">Sign up</a>
+                    Don't have an account? <a class="underlineHover" href="signUp.php">Sign up</a>
                 </div>
           
             </div>
