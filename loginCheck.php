@@ -19,7 +19,7 @@ else{
                 if(password_verify($_POST['pass'], $row['password'])){
                     $_SESSION["userID"]=$row['id'];
                     $_SESSION["userType"]=$_POST['type'];
-                    header('Location:'.$_POST['type'].'HomePage.html'); //change when code is ready
+                    header('Location:'.$_POST['type'].'HomePage.php'); //change when code is ready
                     exit();
                 }
             }

@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     $connection = mysqli_connect("localhost", "root", "root", "webdb");
     $error = mysqli_connect_error();
@@ -6,20 +7,23 @@
         echo '<p> cant connect to DB';
     } 
     else{
-        echo '<p> connect to DB';
+
+
+    if (!isset($_SESSION['userID'])) {
+            echo("<script>alert('You are not logged in, please login or sign up first");
+            echo("<script>window.location = 'index.php';</script>");
+            exit();
     }
     
-    session_start();
-
-    if (!isset($_SESSION['clientID'])) {
-        echo "You are not logged in.";
-        exit;
+    if(!isset($_SESSION['userType']) || $_SESSION['userType']=="designer") {
+        echo 'You do not have access to this page';
+        echo("<script>window.location = 'designerHomePage.php';</script>"); //page doesnt exist yet
     }
 
   
-    $clientID = $_SESSION['clientID'];
+    $clientID = $_SESSION['userID'];
     $sql = "SELECT id, firstName, lastName, emailAddress FROM Client WHERE id = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->bind_param("i", $clientID);
     $stmt->execute();
     $stmt->bind_result($clientID, $firstName, $lastName, $emailAddress);
@@ -33,6 +37,7 @@
     echo "First Name: " . $firstName . "<br>";
     echo "Last Name: " . $lastName . "<br>";
     echo "Email Address: " . $emailAddress . "<br>";
+        }
 
 ?>
 

@@ -31,7 +31,7 @@ else{
         $_SESSION["userID"]=$lastInsertedID;
         $_SESSION["userType"]='client';
         
-        header('Location:clientHomePage.html'); //change when code is ready
+        header('Location:clientHomePage.php'); //change when code is ready
     }
 }
 
