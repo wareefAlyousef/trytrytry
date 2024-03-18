@@ -31,13 +31,7 @@
 
     // Close statement
     $stmt->close();
-
-    // Display client information
-    echo "Client ID: " . $clientID . "<br>";
-    echo "First Name: " . $firstName . "<br>";
-    echo "Last Name: " . $lastName . "<br>";
-    echo "Email Address: " . $emailAddress . "<br>";
-        }
+    }
 
 ?>
 
@@ -47,7 +41,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="clientHomepage.css">
+        <link rel="stylesheet"  href="clientHomepage.css">
         <link rel="stylesheet" href="basic.css">
         <script src="clientHomepage.js"></script>
         <title> <?php echo $firstName;?>'s Home page </title>

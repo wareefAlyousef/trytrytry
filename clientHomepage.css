@@ -33,24 +33,13 @@
 }
 
 .p{
+  text-align: center;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  margin-left: 9rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  margin-left: 2rem;
   margin-right: 2rem;
-  position: relative;
-  bottom: 8rem;
-  margin-bottom: -8rem;
 }
 
-.info img {
-  width: 100px;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 10px;
-  position:relative;
-  bottom: 4.5rem;
-  left:1rem
-}
 
 .info strong {
   font-weight: bold;
