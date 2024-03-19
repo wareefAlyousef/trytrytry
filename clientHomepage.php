@@ -161,26 +161,34 @@
                             <td>4/1/2024</td>
                             <th>Pending Consultation</th>
                         </tr>
-
-                        <tr>
-                            <td><a href="portfolio.html"><img src="images/OIG (2).jpg" alt="logo"  ></a><br/><a href="portfolio.html">Artisan Interiors</a></td>
-                            <td>Living Room</td>
-                            <td>4x5m</td>
-                            <td>Traditional</td>
-                            <td>Beige and Green</td>
-                            <td>6/1/2024</td>
-                            <th> Create a modern and inviting living  space with a blend of beige and green elements, emphasizing comfort and style.<br> <img src="images/t1.jpg" class="conseltationImg" alt="conseltation image" ></th>
-                        </tr>
-
-                        <tr>
-                            <td><a href="portfolio.html"><img src="images/OIG (3).jpg" alt="logo" ></a><br/><a href="portfolio.html">Nouveau Design</a></td>
-                            <td>Living Room</td>
-                            <td>4x5m</td>
-                            <td>Country</td>
-                            <td>Beige and Green</td>
-                            <td>9/1/2024</td>
-                            <th>Consultation Declined</th>
-                        </tr>
+                        <?php
+                            $sql3 = "SELECT DS.id, DS.logoImgFileName ,DS.brandName ,RT.type ,DCR.roomWidth ,DCR.roomLength ,DC.category ,"
+                                    . "DCR.colorPreferences ,DCR.date ,RS.status ,DCn.consultation ,DCn.consultationImgFileName"
+                                    . "FROM DesignConsultationRequest DCR INNER JOIN Designer DS ON DCR.designerID = DS.id "
+                                    . "INNER JOIN DesignCategory DC ON DCR.designCategoryID = DC.id INNER JOIN LEFT JOIN "
+                                    . "DesignConsultation DCn  ON DCR.id = DC.requestID INNER JOIN RequestStatus RS ON DCR.statusID = RS.id "
+                                    . "WHERE DCR.clientID =".$clientID;
+                            
+                            if($results3 = mysqli_query($connection, $sql3)){
+                                while ($row = mysqli_fetch_assoc($results3)) {
+                                    echo"<tr>";
+                                    echo'<td><a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'"><img src="images/'.$row["logoImgFileName"].'" alt="logo"></a><br/><a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'">'.$row['brandName'].'</a></td>';
+                                    echo'<td>'.$row["type"].'</td>';
+                                    echo'<td>'.$row["roomWidth"].'x'.$row["roomLength"].'m</td>';
+                                    echo'<td>'.$row["category"].'</td>';
+                                    echo'<td>'.$row["colorPreferences"].'</td>';
+                                    echo'<td>'.$row["date"].'</td>';
+                                    if($row["status"] == "pending consultation" || $row["status"] == "consultation declined"){
+                                        echo'<td>'.$row["status"].'</td>';
+                                    }
+                                    else{
+                                        echo'<th>'.$row["consultation"].'<br> <img src="images/'.$row["consultationImgFileName"].'" class="conseltationImg" alt="conseltation image" ></th>';
+                                    }
+                                    echo"</tr>";
+                                }
+                            }
+                            
+                        ?>
                     </tbody> 
                 </table>
             </div>
