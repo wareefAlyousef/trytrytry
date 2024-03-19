@@ -1,3 +1,38 @@
+<?php
+    $connection = mysqli_connect("localhost", "root", "root", "webdb");
+    $error = mysqli_connect_error();
+    if ($error != null) {
+        echo '<p> cant connect to DB';
+    } else {
+        echo '<p> connect to DB';
+    }
+
+    if (isset($_GET['requestID'])) {
+        $requestID = $_GET['requestID'];
+
+        $request_query = "SELECT * FROM DesignConsultationRequest WHERE id =".$requestID;
+        if($request_resul = mysqli_query($connection, $designer_query)){
+            $row = mysqli_fetch_assoc($request_resul);
+            $clientID = $row["$clientID"];
+            $roomTypeID = $row["$roomTypeID"];
+            $designCategoryID = $row["$designCategoryID"];
+            $roomWidth = $row["$roomWidth"];
+            $roomLength = $row["$roomLength"];
+            $colorPreferences = $row["$colorPreferences"];
+            $date = $row["$date"];
+            $statusID= $row["$statusID"];
+        }
+    }    
+    else {
+        echo "Designer not found!";
+    }
+    
+    $firstName=;
+    $lastName= ;
+    $type=;
+    $category=;
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
