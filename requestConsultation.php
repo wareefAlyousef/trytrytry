@@ -2,7 +2,7 @@
 <?php
 
 // Get designer ID from query string
-$designerId = isset($_GET['designerId']) ? (int)$_GET['designerId'] : null;
+$designerId = isset($_GET['designerID']) ? (int)$_GET['designerID'] : null;
 
 if (!$designerId) {
   // Handle error: missing designer ID
