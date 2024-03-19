@@ -77,55 +77,50 @@
                 <div class="filter">
                     <form action="clientHomepage.php" method="post">
                         <label for="category">Select Category:</label>
-                        <select id="category">
+                        <select id="category" name="category"> 
                             <?php
-                                $sql1= "SELECT category FROM DesignCategory";
-                                if($results1 = mysqli_query($connection, $sql1)){
+                                $sql1 = "SELECT category FROM DesignCategory";
+                                if ($results1 = mysqli_query($connection, $sql1)) {
                                     while ($row = mysqli_fetch_assoc($results1)) {
-                                        echo"<option name='".$row['category']."' value='".$row['category']."'>".$row['category']."</option>";
+                                        echo "<option value='".$row['category']."'>".$row['category']."</option>";
                                     }
                                 }
                             ?>
                         </select>
-                        <input id="filter" type="submit" value="Filter">
+                        <input id="filter" type="submit" name="submit" value="Filter">
                     </form>
                 </div>
                 <div class="designers">
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                if(isset($_POST['category']) && !empty($_POST['category'])) {
+                                if (isset($_POST['category']) && !empty($_POST['category'])) {
                                     $selected_category = $_POST['category'];
 
                                     $sql = "SELECT D.* FROM Designer D INNER JOIN DesignerSpeciality DS"
-                                            . " ON D.id = DS.designerID INNER JOIN DesignCategory DC ON DS.designCategoryID = DC.id"
-                                            . " WHERE DC.category = ?";
+                                            . " ON D.id = DS.designerID INNER JOIN DesignCategory DC ON"
+                                            . " DS.designCategoryID = DC.id WHERE DC.category = ?";
                                     $stmt = $connection->prepare($sql);
                                     $stmt->bind_param("s", $selected_category);
                                     $stmt->execute();
                                     $result = $stmt->get_result();
+                                    $stmt->close();
                                 }
-                            } 
-                            else{
+                            } else {
                                 $sql = "SELECT * FROM Designer";
-                                $results = mysqli_query($connection, $sql);
+                                $result = mysqli_query($connection, $sql);
                             }
                             
-                            while ($row = mysqli_fetch_assoc($results)) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 echo'<div class="designer">';
-                                echo'<div class="slider-container">';
-                                echo'<div class="slider-wrapper">';
-                                echo'<img src="images/'.$row['logoImgFileName'].'">';
-                                echo'</div>';
-                                echo'</div>';
                                 echo'<a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'"><img src="images/'.$row["logoImgFileName"].'" alt="logo" class="profile-pic"></a>';
                                 echo'<a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'"><h2>'.$row['brandName'].'</h2></a>';
                                 echo'<p class="specialty"><strong>Design preference:</strong>';
                                 $sql2="SELECT DC.category FROM DesignerSpeciality DS"
                                         . " INNER JOIN DesignCategory DC ON DS.designCategoryID = DC.id"
-                                        . " WHERE DS.designerID = your_designer_id";
+                                        . " WHERE DS.designerID = ".$row["id"];
                                 if($results2 = mysqli_query($connection, $sql2)){
                                     while($row2 = mysqli_fetch_assoc($results2)){
-                                        echo'<span class="preference">'.$row2.'</span>';
+                                        echo'<span class="preference">'.$row2["category"].'</span>';
                                     }
                                 }
                                 echo'</p>';
@@ -152,22 +147,13 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td><a href="portfolio.html"><img src="images/OIG.jpg" alt="logo" ></a><br/><a href="portfolio.html">Elevate Interiors</a></td>
-                            <td>Living Room</td>
-                            <td>4x5m</td>
-                            <td>Modern</td>
-                            <td>Beige and Green</td>
-                            <td>4/1/2024</td>
-                            <th>Pending Consultation</th>
-                        </tr>
                         <?php
                             $sql3 = "SELECT DS.id, DS.logoImgFileName ,DS.brandName ,RT.type ,DCR.roomWidth ,DCR.roomLength ,DC.category ,"
-                                    . "DCR.colorPreferences ,DCR.date ,RS.status ,DCn.consultation ,DCn.consultationImgFileName"
-                                    . "FROM DesignConsultationRequest DCR INNER JOIN Designer DS ON DCR.designerID = DS.id "
-                                    . "INNER JOIN DesignCategory DC ON DCR.designCategoryID = DC.id INNER JOIN LEFT JOIN "
-                                    . "DesignConsultation DCn  ON DCR.id = DC.requestID INNER JOIN RequestStatus RS ON DCR.statusID = RS.id "
-                                    . "WHERE DCR.clientID =".$clientID;
+                                . "DCR.colorPreferences ,DCR.date ,RS.status ,DCn.consultation ,DCn.consultationImgFileName "
+                                . "FROM DesignConsultationRequest DCR INNER JOIN Designer DS ON DCR.designerID = DS.id "
+                                . "INNER JOIN DesignCategory DC ON DCR.designCategoryID = DC.id LEFT JOIN " // Corrected LEFT JOIN position
+                                . "DesignConsultation DCn ON DCR.id = DCn.requestID INNER JOIN RequestStatus RS ON DCR.statusID = RS.id "
+                                . "WHERE DCR.clientID =".$clientID;
                             
                             if($results3 = mysqli_query($connection, $sql3)){
                                 while ($row = mysqli_fetch_assoc($results3)) {

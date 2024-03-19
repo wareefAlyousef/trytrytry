@@ -47,8 +47,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="portfolio.css">
-    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="portfolio.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
     <title><?php echo $brand_name; ?> portfolio</title>
 </head>
 <body>
@@ -82,7 +82,7 @@
             while ($row = mysqli_fetch_assoc($designer_result)) {
                 echo "<div class='info'>";
                 echo "<h1>Designer information</h1>";
-                echo "<img src='" . $row['logoImgFileName'] . "' alt='designer's logo'>";
+                echo "<img src='images/" . $row['logoImgFileName'] . "' alt='designer's logo'>";
                 echo "<div class='p'>";
                 echo "<p>First Name: " . $row['firstName'] . "</p>";
                 echo "<p>Last Name: " . $row['lastName'] . "</p>";
