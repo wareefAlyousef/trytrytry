@@ -41,8 +41,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"  href="clientHomepage.css">
-        <link rel="stylesheet" href="basic.css">
+        <link rel="stylesheet"  href="clientHomepage.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
         <script src="clientHomepage.js"></script>
         <title> <?php echo $firstName;?>'s Home page </title>
     </head>
@@ -91,7 +91,6 @@
                     </form>
                 </div>
                 <div class="designers">
-                    <div class="designer">
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 if(isset($_POST['category']) && !empty($_POST['category'])) {
@@ -112,7 +111,7 @@
                             }
                             
                             while ($row = mysqli_fetch_assoc($results)) {
-                                echo"<p>".$row['id'].",".$row['firstName'].",".$row['lastName'].",".$row['emailAddress'].",".$row['brandName'].$row['logoImgFileName']."</p>";
+                                echo'<div class="designer">';
                                 echo'<div class="slider-container">';
                                 echo'<div class="slider-wrapper">';
                                 echo'<img src="images/'.$row['logoImgFileName'].'">';
@@ -131,9 +130,9 @@
                                 }
                                 echo'</p>';
                                 echo'<a href="requestConsultation.php?designerID='.$row["id"].'" class="consult">Request Design Consultation</a>';
+                                echo'</div>';
                             } 
                         ?>
-                    </div>
                 </div>
             </div>
 
