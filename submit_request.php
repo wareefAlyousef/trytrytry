@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
 
         // Redirect the user to the client's homepage
-        header("Location: clientHomepage.html");
+        header("Location: clientHomepage.php");
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
