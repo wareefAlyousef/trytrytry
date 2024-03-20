@@ -27,10 +27,24 @@
         echo "Designer not found!";
     }
     
-    $firstName=;
-    $lastName= ;
-    $type=;
-    $category=;
+    $name_query = "SELECT firstName,lastName FROM Client WHERE id =".$clientID;
+    if($name_resul= mysqli_query($connection, $name_query)){
+        $row1 = mysqli_fetch_assoc($request_resul);
+        $firstName=$row1['firstName'];
+        $lastName= $row1['lastName'];
+    }
+    
+    $type_query = "SELECT type FROM RoomType WHERE id =".$roomTypeID;
+    if($type_resul= mysqli_query($connection, $type_query)){
+        $row2 = mysqli_fetch_assoc($type_resul);
+        $type=$row2['type'];
+    }
+    
+    $category_query = "SELECT category FROM DesignCategory WHERE id =".$designCategoryID;
+    if($category_resul= mysqli_query($connection, $category_query)){
+        $row3 = mysqli_fetch_assoc($category_resul);
+        $category=$row3['category'];
+    }
     
 ?>
 <!DOCTYPE html>
@@ -65,27 +79,29 @@
             <div class="info">
                 <h1>Request information</h1>
                 <div class="p">
-                    <p><strong>Client:</strong> Sara Ahmad</p>
-                    <p><strong>Room:</strong> living room</p>
-                    <p><strong>Dimensions:</strong>4x5m</p>
-                    <p><strong>Design Category:</strong> Modern</p>
-                    <p><strong>Color preference:</strong> Beige and green</p>
-                    <p><strong>Date:</strong> 9/1/2024</p>
+                    <p><strong>Client:</strong> <?php echo $firstName." ".$lastName; ?></p>
+                    <p><strong>Room:</strong> <?php echo $type; ?></p>
+                    <p><strong>Dimensions:</strong><?php echo $roomWidth."x".$roomLength."m"; ?></p>
+                    <p><strong>Design Category:</strong> <?php echo $category; ?></p>
+                    <p><strong>Color preference:</strong> <?php echo $colorPreferences; ?></p>
+                    <p><strong>Date:</strong> <?php echo $date; ?></p>
                 </div>
             </div>
 
             
             <div class="info">
                 <h1> Consultation</h1>
-                <form action="designerHomePage.html" method="post" >
+                <form action="designConsultaionForm.php" method="post" >
                     <label for="consultation">Consultation:</label><br>
                     <textarea id="consultation" name="consultation" rows="4" cols="50"></textarea><br><br>
             
                     <label for="image">Upload file:</label><br>
-                    <input type='file' id='image' name='image'><br><br>
+                    <input type="file" name="image" id="image" accept="image/*"><br><br>
+                    
+                     <input type="hidden"  name="requestID" value=<?php echo $requestID; ?>>
             
-                    <input type='submit' value='Send' id="submitButten1">
-                 </form> 
+                    <input type='submit' name="submit" value='Send' id="submitButten1">
+                </form> 
                
             </div>
 
