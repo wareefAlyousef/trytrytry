@@ -135,47 +135,51 @@
                 <table border="1">
                     <caption>Previous Design Consultation Requests</caption>
                     <thead>
-                      <tr>
-                        <th>Designer</th>
-                        <th>Room</th>
-                        <th>Dimensions</th>
-                        <th>Design Category</th>
-                        <th>Color Preferences</th>
-                        <th>Request Date</th>
-                        <th>Design Consultation</th>
-                      </tr>
+                        <tr>
+                            <th>Designer</th>
+                            <th>Room</th>
+                            <th>Dimensions</th>
+                            <th>Design Category</th>
+                            <th>Color Preferences</th>
+                            <th>Request Date</th>
+                            <th>Design Consultation</th>
+                        </tr>
                     </thead>
 
                     <tbody>
                         <?php
-                            $sql3 = "SELECT DS.id, DS.logoImgFileName ,DS.brandName ,RT.type ,DCR.roomWidth ,DCR.roomLength ,DC.category ,"
-                                . "DCR.colorPreferences ,DCR.date ,RS.status ,DCn.consultation ,DCn.consultationImgFileName "
-                                . "FROM DesignConsultationRequest DCR INNER JOIN Designer DS ON DCR.designerID = DS.id "
-                                . "INNER JOIN DesignCategory DC ON DCR.designCategoryID = DC.id LEFT JOIN " // Corrected LEFT JOIN position
-                                . "DesignConsultation DCn ON DCR.id = DCn.requestID INNER JOIN RequestStatus RS ON DCR.statusID = RS.id "
-                                . "WHERE DCR.clientID =".$clientID;
-                            
-                            if($results3 = mysqli_query($connection, $sql3)){
+                            $sql3 = "SELECT DS.id as designerID, DS.logoImgFileName, DS.brandName, RT.type, DCR.roomWidth, DCR.roomLength, DC.category, DCR.colorPreferences, DCR.date, RS.status, DCn.consultation, DCn.consultationImgFileName
+                                FROM DesignConsultationRequest DCR
+                                INNER JOIN Designer DS ON DCR.designerID = DS.id
+                                INNER JOIN DesignCategory DC ON DCR.designCategoryID = DC.id
+                                LEFT JOIN DesignConsultation DCn ON DCR.id = DCn.requestID
+                                INNER JOIN RequestStatus RS ON DCR.statusID = RS.id
+                                INNER JOIN RoomType RT ON DCR.roomTypeID = RT.id
+                                WHERE DCR.clientID = ?";
+
+                            if ($stmt = mysqli_prepare($connection, $sql3)) {
+                                mysqli_stmt_bind_param($stmt, "i", $clientID);
+                                mysqli_stmt_execute($stmt);
+                                $results3 = mysqli_stmt_get_result($stmt);
+
                                 while ($row = mysqli_fetch_assoc($results3)) {
-                                    echo"<tr>";
-                                    echo'<td><a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'"><img src="images/'.$row["logoImgFileName"].'" alt="logo"></a><br/><a href="portfolio.php?designerID='.$row["id"].'&clientID='.$clientID.'">'.$row['brandName'].'</a></td>';
-                                    echo'<td>'.$row["type"].'</td>';
-                                    echo'<td>'.$row["roomWidth"].'x'.$row["roomLength"].'m</td>';
-                                    echo'<td>'.$row["category"].'</td>';
-                                    echo'<td>'.$row["colorPreferences"].'</td>';
-                                    echo'<td>'.$row["date"].'</td>';
-                                    if($row["status"] == "pending consultation" || $row["status"] == "consultation declined"){
-                                        echo'<td>'.$row["status"].'</td>';
+                                    echo "<tr>";
+                                    echo '<td><a href="portfolio.php?designerID='.$row["designerID"].'&clientID='.$clientID.'"><img src="images/'.$row["logoImgFileName"].'" alt="logo"></a><br/><a href="portfolio.php?designerID='.$row["designerID"].'&clientID='.$clientID.'">'.$row['brandName'].'</a></td>';
+                                    echo '<td>'.$row["type"].'</td>';
+                                    echo '<td>'.$row["roomWidth"].'x'.$row["roomLength"].'m</td>';
+                                    echo '<td>'.$row["category"].'</td>';
+                                    echo '<td>'.$row["colorPreferences"].'</td>';
+                                    echo '<td>'.$row["date"].'</td>';
+                                    if ($row["status"] == "pending consultation" || $row["status"] == "consultation declined") {
+                                        echo '<th>'.$row["status"].'</th>';
+                                    } else {
+                                        echo '<th>'.$row["consultation"].'<br> <img src="images/'.$row["consultationImgFileName"].'" class="consultationImg" alt="consultation image" ></th>';
                                     }
-                                    else{
-                                        echo'<th>'.$row["consultation"].'<br> <img src="images/'.$row["consultationImgFileName"].'" class="conseltationImg" alt="conseltation image" ></th>';
-                                    }
-                                    echo"</tr>";
+                                    echo "</tr>";
                                 }
                             }
-                            
                         ?>
-                    </tbody> 
+                    </tbody>
                 </table>
             </div>
 
