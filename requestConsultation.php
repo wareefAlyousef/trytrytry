@@ -48,10 +48,10 @@ if (!$designerId) {
 
                         <label for="room-type">Room Type:</label> <br>
                         <select id="room-type" name="room-type">
-                          <option value="living-room">Living Room</option>
-                          <option value="kitchen">Kitchen</option>
-                          <option value="dining-room">Dining Room</option>
-                          <option value="bedroom">Bedroom</option>
+                          <option value="1">Living Room</option>
+                          <option value="2">Kitchen</option>
+                          <option value="3">Dining Room</option>
+                          <option value="4">Bedroom</option>
                         </select> <br> <br>
 
 
@@ -64,10 +64,10 @@ if (!$designerId) {
 
                         <label for="design-category">Design Category:</label> 
                         <select id="design-category" name="design-category">
-                        <option value="traditional">Traditional</option>
-                        <option value="bohemian">Bohemian</option>
-                        <option value="country">Country</option>
-                        <option value="modern">Modern</option>
+                        <option value="4">Traditional</option>
+                        <option value="3">Bohemian</option>
+                        <option value="1">Country</option>
+                        <option value="2">Modern</option>
                         </select> <br><br>
 
 
