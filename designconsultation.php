@@ -59,8 +59,8 @@
     
     <body>
         <header id="topBar">
-            <a href="designerHomePage.html"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
-            <a id="logout" href="index.html">Log-out</a>
+            <a href="designerHomePage.php"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
+            <a id="logout" href="index.php">Log-out</a>
         </header>
         
         <main>
@@ -81,7 +81,7 @@
                 <div class="p">
                     <p><strong>Client:</strong> <?php echo $firstName." ".$lastName; ?></p>
                     <p><strong>Room:</strong> <?php echo $type; ?></p>
-                    <p><strong>Dimensions:</strong><?php echo $roomWidth."x".$roomLength."m"; ?></p>
+                    <p><strong>Dimensions: </strong><?php echo $roomWidth."x".$roomLength."m"; ?></p>
                     <p><strong>Design Category:</strong> <?php echo $category; ?></p>
                     <p><strong>Color preference:</strong> <?php echo $colorPreferences; ?></p>
                     <p><strong>Date:</strong> <?php echo $date; ?></p>

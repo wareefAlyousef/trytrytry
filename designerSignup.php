@@ -27,7 +27,7 @@ else{
         $temp_name = $_FILES['logo']['tmp_name'];
         $path_parts = pathinfo($_FILES["logo"]["name"]); //  to change file name
         $extension = $path_parts['extension']; //get extension
-        $filenewname=$_POST['email'].".".$extension; // newname.extension
+        $filenewname=$_POST['bname']. "_" . uniqid() . "." . $extension; // newname.extension
         $folder = "images/".$filenewname; //create path to put image
 
       if (move_uploaded_file($temp_name, $folder)) {

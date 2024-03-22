@@ -32,26 +32,7 @@
 
     // Close statement
     $stmt->close();
-
-    // Display client information
-//    echo "Designer ID: " . $designerID . "<br>";
-//    echo "First Name: " . $firstName . "<br>";
-//    echo "Last Name: " . $lastName . "<br>";
-//    echo "Email Address: " . $emailAddress . "<br>";
-//    echo "Brand Name: " . $brandName . "<br>";
-    
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decline'])) {
-        $requestId = $_POST['request_id'];
-        $updateQuery = "UPDATE designconsultationrequest SET statusID=2 WHERE id=$requestId";
-        if (mysqli_query($connection, $updateQuery)) {
-            echo "<script>alert('Request status updated')</script>";
-        } else {
-            echo "<script>alert('Error updating request status')</script>";
-        }
     }
-
-        }
-
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +75,18 @@
                     <div class="brandLogo">
                         <p>Brand Name: <?php echo $brandName;?></p>
                         <p>Logo:</p>
-                        <img src="images/designers logo.png" alt="designer's logo" width="100" height="100" style="border: solid">
+                        <?php
+                            $sqlimg= "SELECT logoImgFileName FROM designer WHERE id=$designerID";
+                            if($resultsimg = mysqli_query($connection, $sqlimg)){
+                                while ($rowimg = mysqli_fetch_assoc($resultsimg)) {
+//                                    echo '<img src="images/'.$rowimg["projectImgFileName"].'" alt="designer\'s logo" width="100" height="100" style="border: solid" >';
+                                    echo '<img src="images/GoldenDunes_65fd29d76fd66.jpeg" alt="designer\'s logo" width="100" height="100" style="border: solid" >';
+//                                    echo '<img src="images/'.$row["projectImgFileName"].'" style="height: 250px; width: 500px;" >';
+
+                                }
+                            }
+                        ?>
+                        <!--<img src="images/designers logo.png" alt="designer's logo" width="100" height="100" style="border: solid">-->
                     </div>
                     <p>Design Preference: 
                         <?php
@@ -125,73 +117,29 @@
                                 echo'<div class="design hidden">';
                                 
                                     echo'<div class="slider-container"> <div class="slider-wrapper">';
-                                        echo '<img src="images/'.$row["projectImgFileName"].' style="height: 250px; width: 500px; >';
+                                        echo '<img src="images/'.$row["projectImgFileName"].'" style="height: 250px; width: 500px;" >';
+//                                        echo '<img src="images/'.$row["logoImgFileName"].'" alt="logo" class="profile-pic">';
                                     echo'</div></div>';
                                 
                                     echo '<h2>'.$row["projectName"].'</h2>';
                                     echo '<p>'.$row['description'].'</p>';
-                                    $sql2= "SELECT category FROM DesignCategory WHERE id IN (SELECT designCategoryID FROM designportoflioproject WHERE designerID = '$designerID')";
-                                    //group by?? it will show all prefrences that the designer have worked on, u should distinguish between design ids of the same designer
+                                    $sql2= 'SELECT category FROM DesignCategory WHERE id IN (SELECT designCategoryID FROM designportoflioproject WHERE projectName = "'.$row["projectName"].'")';
+                                    
                                     if($results2 = mysqli_query($connection, $sql2)){
-                                        while ($row = mysqli_fetch_assoc($results2)) {
-                                            echo '<p class="specialty"><strong>Design preference:</strong> <span class="preference">'.$row['category'].'</span> </p>';
+                                        echo '<p class="specialty"><strong>Design preference: </strong>';
+                                        while ($row2 = mysqli_fetch_assoc($results2)) {
+                                            echo '<span class="preference">'.$row2['category'].' </span>';
                                         }
+                                            echo '</p>';
                                     }
-                                    $_SESSION['projectId'] = $id;
+//                                    
                                     echo'<a href="projectUpdate.php?projectId='.$row["id"].'" class="consult" name="'.$row["projectName"].'" id="'.$row["projectName"].'">Edit</a>';
-//                                        echo '<form action="projectUpdate.php" method="post">';
-//                                        echo '<input type="hidden" name="projectId" value="'.$row["id"].'">';
-//                                        echo '<button type="submit" name="projectIdEdit" class="consult">Edit</button>';
-//                                        echo '</form>';
-//                                        
-//                                        echo '<form action="projectUpdate.php" method="post">';
-//                                        echo '<input type="hidden" name="projectId" value="'.$row["id"].'">';
-//                                        echo '<button type="submit" name="projectIdDelete" class="consult">Delete</button>';
-//                                        echo '</form>';
-                                    echo '<a href="requestConsultation.php" class="consult" id="'.$row["id"].'">Delete</a>';
+                                    echo '<a href="deleteProject.php?projectId='.$row["id"].'" name = "deleteProject" class="consult">Delete</a>';
                                 echo'</div>';
                             } 
                         ?>
                     
-<!--                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                              <img src="images/teenage-girl-study-room-in-boho-style.png" style="height: 250px; width: 500px;">
-                            </div>
-                        </div>
-                        <h2>Cozy Bedroom</h2>
-                        <p class="specialty"><strong>Design preference:</strong> <span class="preference">Country</span> <span class="preference">Bohemian</span></p>
-                        <p>A bohemian bedroom with a study area is a cozy and creative space that reflects your personality and passions.</p>
-                        <a href="projectUpdate.html" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-
-                    </div>-->
-
-<!--                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper"> 
-                                <img src="images/1.jpg" style="height: 250px; width: 500px;" >
-                            </div>
-                        </div>
-                        <h2>Boho Bliss</h2>
-                        <p class="specialty"><strong>Design preference:</strong> <span class="preference">Traditional</span></p>
-                        <p>A cozy and natural bohemian bedroom with a rustic charm and a mix of textures.</p>
-                        <a href="projectUpdate.php" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-                    </div>
-
-                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <img src="images/2.jpg" style="height: 250px; width: 500px;">
-                            </div>
-                        </div>
-                        <h2>The Green Oasis</h2>
-                        <p class="specialty"><strong>Design preference:</strong> <span class="preference">Traditional</span> <span class="preference">Modern</span></p>
-                        <p>A modern and elegant living room with a nature-inspired design, featuring large windows, wooden accents, and a green abstract painting.</p>
-                        <a href="projectUpdate.html" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-                    </div>
+<!--                    
 
                     <div class="design hidden">
                         <div class="slider-container">
@@ -260,7 +208,7 @@
                             $sql3 = 'SELECT * FROM designconsultationrequest WHERE designerID = '.$designerID.' AND statusID=1';
                             if($results3 = mysqli_query($connection, $sql3)){
                                 while ($row = mysqli_fetch_assoc($results3)) {
-                                    
+                                    $id = $row['id'];
                                     $cName = 'SELECT firstName AS f, lastName AS l FROM client WHERE id = '.$row['clientID'].'';
                                     $rType = 'SELECT type FROM roomtype WHERE id = '.$row['roomTypeID'].'';
                                     $dCategory = 'SELECT category FROM DesignCategory WHERE id= '.$row['designCategoryID'].'';
@@ -290,14 +238,15 @@
                                         
                                         
                                         
-                                        echo '<th><a class="provide-decline" href="designconsultation.php">Provide Consultation</a></th>';
+                                        echo '<th><a class="provide-decline" href="designconsultation.php?requestID='.$id.'">Provide Consultation</a></th>';
                                         //$prov = 'UPDATE designconsultationrequest SET statusID=3 WHERE id='.$row['id'].'';
-                                        echo '<th>';
-                                        echo '<form method="post">';
-                                        echo '<input type="hidden" name="request_id" value="' . $row['id'] . '">';
-                                        echo '<button type="submit" name="decline" class="provide-decline" style = "background-color: #4B4D43;   border: none; font-family: Amiri, serif; font-weight: bold; font-size: 16px;">Decline Consultation</button>';
-                                        echo '</form>';
-                                        echo '</th>';
+                                        echo '<th><a class="provide-decline" href="declineConsultation.php?requestID='.$id.'">Decline Consultation</a></th>';
+//                                        echo '<th>';
+//                                        echo '<form method="post">';
+//                                        echo '<input type="hidden" name="request_id" value="' . $row['id'] . '">';
+//                                        echo '<button type="submit" name="decline" class="provide-decline" style = "background-color: #4B4D43;   border: none; font-family: Amiri, serif; font-weight: bold; font-size: 16px;">Decline Consultation</button>';
+//                                        echo '</form>';
+//                                        echo '</th>';
                                         
                                     echo"</tr>";
                                 }
