@@ -36,13 +36,13 @@
 
         
                 <?php
-            echo "<h1>hellow world</h1>";
-            echo "<br><p>from waref try try try</p>";
-            echo "<p>this echo from anathor divise</p>";
-            echo "<p>this echo from the first divise</p>";
-            echo "<p>this echo from anathor divise</p>";
-            echo "IT Woooooooooooooorked on Rana's device ;) ^^";
-            echo "shokraaannn wareeefffffff";
+//            echo "<h1>hellow world</h1>";
+//            echo "<br><p>from waref try try try</p>";
+//            echo "<p>this echo from anathor divise</p>";
+//            echo "<p>this echo from the first divise</p>";
+//            echo "<p>this echo from anathor divise</p>";
+//            echo "IT Woooooooooooooorked on Rana's device ;) ^^";
+//            echo "shokraaannn wareeefffffff";
             
             $connection = mysqli_connect("localhost","root","root","webdb");
             $error = mysqli_connect_error();

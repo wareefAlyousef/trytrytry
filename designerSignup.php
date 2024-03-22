@@ -48,7 +48,7 @@ else{
         $query = $connection->query($sql); }
         
         
-        header('Location:designerHomePage.html'); //change when code is ready
+        header('Location:designerHomePage.php'); //change when code is ready
         exit();
         
         }else{

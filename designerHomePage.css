@@ -64,6 +64,10 @@ th, td {
     background-color: #4B4D43; /* Changed color */
     color: #F1EFED; /* Changed color */
   }
+  
+  button {
+    text-decoration: none;
+  }
 
   .provide-decline{
     text-decoration: none;
