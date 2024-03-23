@@ -171,7 +171,8 @@
                                     echo '<td>'.$row["colorPreferences"].'</td>';
                                     echo '<td>'.$row["date"].'</td>';
                                     if ($row["status"] == "consultation provided") {
-                                        echo '<th>'.$row["consultation"].'<br> <img src="images/'.$row["consultationImgFileName"].'" class="consultationImg" alt="consultation image" ></th>';
+                                        echo '<th>'.$row["consultation"];
+                                        echo '<br> <img src="images/'.$row["consultationImgFileName"].'" class="conseltationImg" alt="consultation image" width = "200px" ></th>';
                                     } else {
                                         echo '<th>'.$row["status"].'</th>';
                                     }

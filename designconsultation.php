@@ -2,50 +2,48 @@
     $connection = mysqli_connect("localhost", "root", "root", "webdb");
     $error = mysqli_connect_error();
     if ($error != null) {
-        echo '<p> cant connect to DB';
+        echo '<p> Can\'t connect to DB';
     } else {
-        echo '<p> connect to DB';
+        echo '<p> Connected to DB';
     }
 
     if (isset($_GET['requestID'])) {
         $requestID = $_GET['requestID'];
 
-        $request_query = "SELECT * FROM DesignConsultationRequest WHERE id =".$requestID;
-        if($request_resul = mysqli_query($connection, $designer_query)){
-            $row = mysqli_fetch_assoc($request_resul);
-            $clientID = $row["$clientID"];
-            $roomTypeID = $row["$roomTypeID"];
-            $designCategoryID = $row["$designCategoryID"];
-            $roomWidth = $row["$roomWidth"];
-            $roomLength = $row["$roomLength"];
-            $colorPreferences = $row["$colorPreferences"];
-            $date = $row["$date"];
-            $statusID= $row["$statusID"];
+        $request_query = "SELECT * FROM DesignConsultationRequest WHERE id =" . $requestID;
+        if ($request_result = mysqli_query($connection, $request_query)) {
+            $row = mysqli_fetch_assoc($request_result);
+            $clientID = $row["clientID"];
+            $roomTypeID = $row["roomTypeID"];
+            $designCategoryID = $row["designCategoryID"];
+            $roomWidth = $row["roomWidth"];
+            $roomLength = $row["roomLength"];
+            $colorPreferences = $row["colorPreferences"];
+            $date = $row["date"];
+            $statusID = $row["statusID"];
         }
-    }    
-    else {
+    } else {
         echo "Designer not found!";
     }
     
-    $name_query = "SELECT firstName,lastName FROM Client WHERE id =".$clientID;
-    if($name_resul= mysqli_query($connection, $name_query)){
-        $row1 = mysqli_fetch_assoc($request_resul);
-        $firstName=$row1['firstName'];
-        $lastName= $row1['lastName'];
+    $name_query = "SELECT firstName, lastName FROM Client WHERE id =" . $clientID;
+    if ($name_result = mysqli_query($connection, $name_query)) {
+        $row1 = mysqli_fetch_assoc($name_result);
+        $firstName = $row1['firstName'];
+        $lastName = $row1['lastName'];
     }
     
-    $type_query = "SELECT type FROM RoomType WHERE id =".$roomTypeID;
-    if($type_resul= mysqli_query($connection, $type_query)){
-        $row2 = mysqli_fetch_assoc($type_resul);
-        $type=$row2['type'];
+    $type_query = "SELECT type FROM RoomType WHERE id =" . $roomTypeID;
+    if ($type_result = mysqli_query($connection, $type_query)) {
+        $row2 = mysqli_fetch_assoc($type_result);
+        $type = $row2['type'];
     }
     
-    $category_query = "SELECT category FROM DesignCategory WHERE id =".$designCategoryID;
-    if($category_resul= mysqli_query($connection, $category_query)){
-        $row3 = mysqli_fetch_assoc($category_resul);
-        $category=$row3['category'];
+    $category_query = "SELECT category FROM DesignCategory WHERE id =" . $designCategoryID;
+    if ($category_result = mysqli_query($connection, $category_query)) {
+        $row3 = mysqli_fetch_assoc($category_result);
+        $category = $row3['category'];
     }
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,16 +89,15 @@
             
             <div class="info">
                 <h1> Consultation</h1>
-                <form action="designConsultaionForm.php" method="post" >
+                <form action="designConsultationForm.php" method="POST" enctype="multipart/form-data">
                     <label for="consultation">Consultation:</label><br>
                     <textarea id="consultation" name="consultation" rows="4" cols="50"></textarea><br><br>
-            
+
                     <label for="image">Upload file:</label><br>
                     <input type="file" name="image" id="image" accept="image/*"><br><br>
-                    
-                     <input type="hidden"  name="requestID" value=<?php echo $requestID; ?>>
-            
-                    <input type='submit' name="submit" value='Send' id="submitButten1">
+
+                    <input type="hidden" name="requestID" value="<?php echo $requestID; ?>">
+                    <input type="submit" name="submit" value="Send" id="submitButten1">
                 </form> 
                
             </div>
