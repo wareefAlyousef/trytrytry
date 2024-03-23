@@ -70,6 +70,13 @@
                         $pName = $row['projectName'];
                         $pImg = $row["projectImgFileName"];
                         $description = $row['description'];
+                        
+                        $designCategoryID = $row['designCategoryID'];
+                        $sqlcat='SELECT * FROM designcategory WHERE id='.$designCategoryID;
+                        $resulcat= mysqli_query($connection, $sqlcat);
+                        while($rowcat= mysqli_fetch_assoc($resulcat)){
+                            $designCategory = $rowcat['category'];
+                        }
                         }
                     ?>
                     
@@ -91,7 +98,12 @@
                                 $sql='SELECT * FROM designcategory';
                                 $result= mysqli_query($connection, $sql);
                                 while($row= mysqli_fetch_assoc($result))
+                                {
+                                    if ($row['category'] == $designCategory)
+                                    echo '<option selected name="'.$designCategory.'" value="'.$designCategory.'">'.$designCategory.'</option>';
+                                    if ($row['category'] != $designCategory)
                                     echo '<option name="'.$row['category'].'" value="'.$row['category'].'">'.$row['category'].'</option>';
+                                }
                             ?>
                           </select>
                         
