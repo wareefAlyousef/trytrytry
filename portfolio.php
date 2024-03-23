@@ -126,7 +126,7 @@
 
             while ($row = mysqli_fetch_assoc($projects_result)) {
                 echo "<div class='design'>";
-                echo "<img src='" . $row['projectImgFileName'] . "' style='height: 250px; width: 500px;'>";
+                echo "<img src='images/" . $row['projectImgFileName'] . "'>";
                 echo "<h2>" . $row['projectName'] . "</h2>";
                 echo "<p class='specialty'><strong>Design category:</strong> " . $row['category'] . "</p>";
                 echo "<p>" . $row['description'] . "</p>";
