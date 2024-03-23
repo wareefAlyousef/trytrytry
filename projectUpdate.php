@@ -80,8 +80,9 @@
 
             
                     <label for="image">Upload file:</label><br>
+                    <?php echo '<img src="images/'.$pImg.'" style="height: 90px; width: 150px;" ><br>'; ?>
                     <input type='file' id='image' name='image'> <br><br>
-                    <?php //echo '<input type="file" id="image" name="image"> <br><br>'; ?>
+                    
 
                     <div class="item">
                         <label for="name">Design Category:</label> <br>

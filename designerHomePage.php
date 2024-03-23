@@ -79,14 +79,12 @@
                             $sqlimg= "SELECT logoImgFileName FROM designer WHERE id=$designerID";
                             if($resultsimg = mysqli_query($connection, $sqlimg)){
                                 while ($rowimg = mysqli_fetch_assoc($resultsimg)) {
-//                                    echo '<img src="images/'.$rowimg["projectImgFileName"].'" alt="designer\'s logo" width="100" height="100" style="border: solid" >';
-                                    echo '<img src="images/GoldenDunes_65fd29d76fd66.jpeg" alt="designer\'s logo" width="100" height="100" style="border: solid" >';
-//                                    echo '<img src="images/'.$row["projectImgFileName"].'" style="height: 250px; width: 500px;" >';
+//                                    echo "<script>alert(".$rowimg["projectImgFileName"].");</script>";
+                                    echo '<img src="images/'.$rowimg["logoImgFileName"].'" width="100" height="100" style="border: solid" >';
 
                                 }
                             }
                         ?>
-                        <!--<img src="images/designers logo.png" alt="designer's logo" width="100" height="100" style="border: solid">-->
                     </div>
                     <p>Design Preference: 
                         <?php
