@@ -170,10 +170,10 @@
                                     echo '<td>'.$row["category"].'</td>';
                                     echo '<td>'.$row["colorPreferences"].'</td>';
                                     echo '<td>'.$row["date"].'</td>';
-                                    if ($row["status"] == "pending consultation" || $row["status"] == "consultation declined") {
-                                        echo '<th>'.$row["status"].'</th>';
-                                    } else {
+                                    if ($row["status"] == "consultation provided") {
                                         echo '<th>'.$row["consultation"].'<br> <img src="images/'.$row["consultationImgFileName"].'" class="consultationImg" alt="consultation image" ></th>';
+                                    } else {
+                                        echo '<th>'.$row["status"].'</th>';
                                     }
                                     echo "</tr>";
                                 }

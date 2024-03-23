@@ -88,7 +88,7 @@
                 echo "<p>Last Name: " . $row['lastName'] . "</p>";
                 echo "<p>Email address: " . $row['emailAddress'] . "</p>";
                 echo "<p>Brand Name: " . $row['brandName'] . "</p>";
-
+                $brandName=$row['brandName'];
                 $specialities_query = "SELECT DesignCategory.category FROM DesignerSpeciality INNER JOIN DesignCategory ON DesignerSpeciality.designCategoryID = DesignCategory.id WHERE designerID = ?";
                 $specialities_statement = mysqli_prepare($connection, $specialities_query);
                 mysqli_stmt_bind_param($specialities_statement, 'i', $designerID);
@@ -121,7 +121,7 @@
 
         if ($projects_result->num_rows > 0) {
             echo "<div class='allDesigns'>";
-            echo "<h1>Oasis Projects</h1>";
+            echo "<h1>".$brandName." Projects</h1>";
             echo "<div class='designs'>";
 
             while ($row = mysqli_fetch_assoc($projects_result)) {
