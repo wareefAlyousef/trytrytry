@@ -135,7 +135,7 @@
             echo "</div>";
 
             echo "<div id='consultcontainer'>";
-            echo '<a href="requestConsultation.html" class="consult">Request Design Consultation</a>';
+            echo '<a href="requestConsultation.php?designerID='.$designerID.'" class="consult">Request Design Consultation</a>';
             echo "</div>";
 
             echo "</div>";
