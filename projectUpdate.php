@@ -60,7 +60,7 @@
             <div class="info">
                 <h1>New Project</h1>
                 <!--<form action="projectUpdate.php" method="post" enctype="multipart/form-data">-->
-                <form action="projectUpdate.php?projectId=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+                <form action="projectUpdatePHP.php?projectId=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
                     <?php
 //                    retrieve project data
                         $sql = "SELECT * FROM designportoflioproject WHERE id=$id";
@@ -123,35 +123,35 @@
         </main>
                 
         <?php 
-        if(isset($_POST['submitButten1'])){
-
-        $category = $_POST['category'];
-        $categoryIDQuery = mysqli_query($connection, "SELECT id FROM designcategory WHERE category='$category'");
-        $categoryIDAssoc = mysqli_fetch_assoc($categoryIDQuery);
-        $categoryID = $categoryIDAssoc['id'];
-                        
-        // Generate unique filename for the uploaded image
-        $path_parts = pathinfo($_FILES["image"]["name"]);
-        $extension = $path_parts['extension'];
-        $filenewname = $pName . "_" . uniqid() . "." . $extension;
-        $folder = "images/" . $filenewname;
-        
-//        echo '<script>alert("'.$_POST['pName'].'-'.$filenewname.' '.-$categoryID.' - '.$_POST['description'].' - '.$id.'");</script>';                
-        
-        // Move uploaded file to the desired location
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $folder)) {
-                echo '<script>alert("success to upload image.");</script>';                
-        $up = "UPDATE designportoflioproject SET projectName='" . $_POST['pName'] . "', projectImgFileName='" . $filenewname . "', "
-            . "designCategoryID='" . $categoryID . "', description='" . $_POST['description'] . "' WHERE id =" . $id;
-                $plsWork = mysqli_query($connection, $up);
-        if($plsWork){
-                echo '<script>alert("project was updated successfully.");</script>';                
-                echo '<script>window.location = "designerHomePage.php";</script>';
-        }
-        } else {
-            echo '<script>alert("Failed to upload image.");</script>';
-        }
-        }//if
+//        if(isset($_POST['submitButten1'])){
+//
+//        $category = $_POST['category'];
+//        $categoryIDQuery = mysqli_query($connection, "SELECT id FROM designcategory WHERE category='$category'");
+//        $categoryIDAssoc = mysqli_fetch_assoc($categoryIDQuery);
+//        $categoryID = $categoryIDAssoc['id'];
+//                        
+//        // Generate unique filename for the uploaded image
+//        $path_parts = pathinfo($_FILES["image"]["name"]);
+//        $extension = $path_parts['extension'];
+//        $filenewname = $pName . "_" . uniqid() . "." . $extension;
+//        $folder = "images/" . $filenewname;
+//        
+////        echo '<script>alert("'.$_POST['pName'].'-'.$filenewname.' '.-$categoryID.' - '.$_POST['description'].' - '.$id.'");</script>';                
+//        
+//        // Move uploaded file to the desired location
+//        if (move_uploaded_file($_FILES['image']['tmp_name'], $folder)) {
+//                echo '<script>alert("success to upload image.");</script>';                
+//        $up = "UPDATE designportoflioproject SET projectName='" . $_POST['pName'] . "', projectImgFileName='" . $filenewname . "', "
+//            . "designCategoryID='" . $categoryID . "', description='" . $_POST['description'] . "' WHERE id =" . $id;
+//                $plsWork = mysqli_query($connection, $up);
+//        if($plsWork){
+//                echo '<script>alert("project was updated successfully.");</script>';                
+//                echo '<script>window.location = "designerHomePage.php";</script>';
+//        }
+//        } else {
+//            echo '<script>alert("Failed to upload image.");</script>';
+//        }
+//        }//if
         ?>
 
         

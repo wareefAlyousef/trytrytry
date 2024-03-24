@@ -9,7 +9,7 @@ if(mysqli_connect_error()){
 
 if (isset($_GET['requestID'])) {
     $requestID = $_GET['requestID'];
-    $upQuery = "UPDATE designconsultationrequest SET statusID=3 WHERE id = $requestID";
+    $upQuery = "UPDATE designconsultationrequest SET statusID=2 WHERE id = $requestID";
     //$prov = 'UPDATE designconsultationrequest SET statusID=3 WHERE id='.$row['id'].'';
     
     if (mysqli_query($connection, $upQuery)) {
