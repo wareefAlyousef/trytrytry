@@ -10,14 +10,14 @@
 
 
     if (!isset($_SESSION['userID'])) {
-            echo("<script>alert('You are not logged in, please login or sign up first");
-            echo("<script>window.location = 'index.php';</script>");
+            echo "<script>alert('You are not logged in, please login or sign up first');</script>";
+            echo "<script>window.location = 'index.php';</script>";
             exit();
     }
     
     if(!isset($_SESSION['userType']) || $_SESSION['userType']=="designer") {
-        echo 'You do not have access to this page';
-        echo("<script>window.location = 'designerHomePage.php';</script>"); //page doesnt exist yet
+        echo "<script> alert('You do not have access to this page');</script>";
+        echo "<script>window.location = 'designerHomepage.php';</script>"; 
     }
 
   

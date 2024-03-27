@@ -4,7 +4,15 @@
     if ($error != null) {
         echo '<p> cant connect to DB';
     } else {
-        echo '<p> connect to DB';
+                    if (!isset($_SESSION['userID'])) {
+            echo "<script>alert('You are not logged in, please login or sign up first');</script>";
+            echo "<script>window.location = 'index.php';</script>";
+            exit();
+    }
+    
+    if(!isset($_SESSION['userType']) || $_SESSION['userType']=="designer") {
+        echo "<script> alert('You do not have access to this page');</script>";
+        echo "<script>window.location = 'designerHomepage.php';</script>"; 
     }
 
     if (isset($_GET['designerID'])) {
@@ -23,7 +31,7 @@
         } else {
             echo "Designer not found!";
         }
-    }
+    } }
 
     if (isset($_GET['clientID'])) {
         $clientID = $_GET['clientID'];

@@ -9,16 +9,16 @@
     else{
 
 
-        if (!isset($_SESSION['userID'])) {
-                echo("<script>alert('You are not logged in, please login or sign up first");
-                echo("<script>window.location = 'index.php';</script>");
-                exit();
-        }
-
-        if(!isset($_SESSION['userType']) || $_SESSION['userType']=="client") {
-            echo 'You do not have access to this page';
-            echo("<script>window.location = 'clientHomepage.php';</script>"); //page doesnt exist yet
-        }
+                    if (!isset($_SESSION['userID'])) {
+            echo "<script>alert('You are not logged in, please login or sign up first');</script>";
+            echo "<script>window.location = 'index.php';</script>";
+            exit();
+    }
+    
+    if(!isset($_SESSION['userType']) || $_SESSION['userType']=="client") {
+        echo "<script> alert('You do not have access to this page');</script>";
+        echo "<script>window.location = 'clientHomepage.php';</script>"; 
+    }
     }
     
         // Get project ID
