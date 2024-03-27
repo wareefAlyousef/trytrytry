@@ -36,26 +36,40 @@
         $categoryID = $categoryIDAssoc['id'];
                         
         // Generate unique filename for the uploaded image
+        if(file_exists($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name'])){
         $path_parts = pathinfo($_FILES["image"]["name"]);
         $extension = $path_parts['extension'];
         $filenewname = $pName . "_" . uniqid() . "." . $extension;
         $folder = "images/" . $filenewname;
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $folder)) {
+        echo '<script>alert("success to upload image.");</script>'; }
+        
+        }
+        else {
+        $sql = "SELECT projectImgFileName FROM designportoflioproject WHERE id=$id";
+                        $result = mysqli_query($connection, $sql);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        $filenewname = $row["projectImgFileName"];
+                      
+                        }
+
+         }
         
 //        echo '<script>alert("'.$_POST['pName'].'-'.$filenewname.' '.-$categoryID.' - '.$_POST['description'].' - '.$id.'");</script>';                
         
         // Move uploaded file to the desired location
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $folder)) {
-                echo '<script>alert("success to upload image.");</script>';                
+                       
         $up = "UPDATE designportoflioproject SET projectName='" . $_POST['pName'] . "', projectImgFileName='" . $filenewname . "', "
             . "designCategoryID='" . $categoryID . "', description='" . $_POST['description'] . "' WHERE id =" . $id;
                 $plsWork = mysqli_query($connection, $up);
         if($plsWork){
                 echo '<script>alert("project was updated successfully.");</script>';                
-                echo '<script>window.location = "designerHomePage.php";</script>';
+                
         }
         } else {
-            echo '<script>alert("Failed to upload image.");</script>';
-        }
-        }//if
+            echo '<script>alert("Failed to update project");</script>';
+            
+        } echo '<script>window.location = "designerHomePage.php";</script>';
     
 ?>
