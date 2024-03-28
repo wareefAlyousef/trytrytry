@@ -30,6 +30,7 @@
         
         if(isset($_POST['submitButten1'])){
 
+        $pName = $_POST['pName'];
         $category = $_POST['category'];
         $categoryIDQuery = mysqli_query($connection, "SELECT id FROM designcategory WHERE category='$category'");
         $categoryIDAssoc = mysqli_fetch_assoc($categoryIDQuery);
