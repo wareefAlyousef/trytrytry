@@ -1,5 +1,6 @@
 
 <?php
+session_start();
     if (!isset($_SESSION['userID'])) {
             echo "<script>alert('You are not logged in, please login or sign up first');</script>";
             echo "<script>window.location = 'index.php';</script>";

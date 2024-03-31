@@ -1,4 +1,5 @@
 <?php
+session_start();
     $connection = mysqli_connect("localhost", "root", "root", "webdb");
     $error = mysqli_connect_error();
     if ($error != null) {
