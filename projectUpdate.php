@@ -35,14 +35,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="projectAddition.css">
-        <link rel="stylesheet" href="basic.css">
+        <link rel="stylesheet" href="projectAddition.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
         <title>update page </title>
     </head>
     <body>
         <header id="topBar">
             <a href="designerHomePage.php"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
-            <a id="logout" href="index.php">Log-out</a>
+            <a id="logout" href="logout.php">Log-out</a>
         </header>
         
         <main>

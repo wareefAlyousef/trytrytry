@@ -27,14 +27,14 @@ if (!$designerId) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="requestConsultation.css">
-        <link rel="stylesheet" href="basic.css">
+        <link rel="stylesheet" href="requestConsultation.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
         <title>Request design consultation page </title>
     </head>
     <body>
         <header id="topBar">
-            <a href="clientHomepage.html"><img class="logo" src="images/lightBeigeLogo.png" alt="logo" ></a>
-            <a id="logout" href="index.html">Log-out</a>
+            <a href="clientHomepage.php"><img class="logo" src="images/lightBeigeLogo.png" alt="logo" ></a>
+            <a id="logout" href="logout.php">Log-out</a>
         </header>
         
         <main>

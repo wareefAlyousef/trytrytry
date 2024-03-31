@@ -40,8 +40,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="basic.css">
-        <link rel="stylesheet" href="designerHomePage.css">
+        <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="designerHomePage.css?v=<?php echo time(); ?>">
         <script defer src="designerHomePage.js"></script>
         <title>Designer Homepage</title>
     </head>
@@ -51,7 +51,7 @@
     <body>
 
         <header id="topBar">
-            <a href="designerHomePage.html"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
+            <a href="designerHomePage.php"><img class="logo" alt="logo" src="images/lightBeigeLogo.png" ></a>
             <a id="logout" href="logout.php">Log-out</a>
         </header>
         
