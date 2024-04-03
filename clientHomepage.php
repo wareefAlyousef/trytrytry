@@ -44,6 +44,45 @@
         <link rel="stylesheet"  href="clientHomepage.css?v=<?php echo time(); ?>">
         <link rel="stylesheet" href="basic.css?v=<?php echo time(); ?>">
         <script src="clientHomepage.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function filterDesigners(category) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'filter_designers.php',
+                    data: { category: category },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            updateDesigners(response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+
+            function updateDesigners(designers) {
+                var html = '';
+                designers.forEach(function(designer) {
+                    html += '<div class="designer">';
+                    html += '<a href="portfolio.php?designerID=' + designer.id + '&clientID=<?php echo $clientID; ?>"><img src="images/' + designer.logoImgFileName + '" alt="logo" class="profile-pic"></a>';
+                    html += '<a href="portfolio.php?designerID=' + designer.id + '&clientID=<?php echo $clientID; ?>"><h2>' + designer.brandName + '</h2></a>';
+                    html += '<p class="specialty"><strong>Design preference:</strong>';
+                    designer.specialties.forEach(function(specialty) {
+                        html += '<span class="preference">' + specialty + '</span>, ';
+                    });
+                    html = html.slice(0, -2); // Remove the last comma and space
+                    html += '</p>';
+                    html += '<a href="requestConsultation.php?designerID=' + designer.id + '" class="consult">Request Design Consultation</a>';
+                    html += '</div>';
+                });
+                $('.designers').html(html);
+            }
+        </script>
         <title> <?php echo $firstName;?>'s Home page </title>
     </head>
     <body>
@@ -75,9 +114,9 @@
             <div class="allDesigners">
                 <h1>Designers</h1>
                 <div class="filter">
-                    <form action="clientHomepage.php" method="post">
+                    <!-- <form action="clientHomepage.php" method="post"  > -->
                         <label for="category">Select Category:</label>
-                        <select id="category" name="category"> 
+                        <select id="category" name="category" onchange="filterDesigners(this.value)">
                             <?php
                                 $sql1 = "SELECT category FROM DesignCategory";
                                 if ($results1 = mysqli_query($connection, $sql1)) {
@@ -87,12 +126,12 @@
                                 }
                             ?>
                         </select>
-                        <input id="filter" type="submit" name="submit" value="Filter">
-                    </form>
+                        <!-- <input id="filter" type="submit" name="submit" value="Filter"> -->
+                    <!-- </form> -->
                 </div>
                 <div class="designers">
                         <?php
-                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            /*if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 if (isset($_POST['category']) && !empty($_POST['category'])) {
                                     $selected_category = $_POST['category'];
 
@@ -105,10 +144,10 @@
                                     $result = $stmt->get_result();
                                     $stmt->close();
                                 }
-                            } else {
+                            } else {*/
                                 $sql = "SELECT * FROM Designer";
                                 $result = mysqli_query($connection, $sql);
-                            }
+                            //}
                             
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo'<div class="designer">';
