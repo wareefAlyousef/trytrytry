@@ -44,6 +44,25 @@
         <link rel="stylesheet" href="designerHomePage.css?v=<?php echo time(); ?>">
         <script defer src="designerHomePage.js"></script>
         <title>Designer Homepage</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function edit_row(id) {
+                  if ( confirm("Are you Sure ?") ==  true) {
+                    $.ajax({
+                      type:'POST',
+                      url:'declineConsultation.php',
+                      data:{
+                        edit_row:'edit_row',
+                        row_id: id
+                      },
+                        success : function(response){
+                            if (response=="success")
+                              $("#row" + id).remove();
+                          }
+                    });
+                }
+                }
+        </script>
     </head>
 
 
@@ -79,7 +98,6 @@
                             $sqlimg= "SELECT logoImgFileName FROM designer WHERE id=$designerID";
                             if($resultsimg = mysqli_query($connection, $sqlimg)){
                                 while ($rowimg = mysqli_fetch_assoc($resultsimg)) {
-//                                    echo "<script>alert(".$rowimg["projectImgFileName"].");</script>";
                                     echo '<img src="images/'.$rowimg["logoImgFileName"].'" width="100" height="100" style="border: solid" >';
 
                                 }
@@ -135,52 +153,8 @@
                                     echo '<a href="deleteProject.php?projectId='.$row["id"].'" name = "deleteProject" class="consult">Delete</a>';
                                 echo'</div>';
                             } 
+                            echo'</div></div>';
                         ?>
-                    
-<!--                    
-
-                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <img src="images/3.jpg" style="height: 250px; width: 500px;">
-                            </div>
-                        </div>
-                        <h2>Modern Boho</h2>
-                        <p class="specialty"><strong>Design preference:</strong> <span class="preference">Traditional</span> <span class="preference">Bohemian</span></p>
-                        <p>A modern and cozy living room with a touch of bohemian style, featuring large windows, wooden accents, and a green abstract painting.</p>
-                        <a href="projectUpdate.html" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-                    </div>
-
-                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <img src="images/4.jpg" style="height: 250px; width: 500px;">
-                            </div>
-                        </div>
-                        <h2>Wooden Charm</h2>
-                        <p  class="specialty"><strong>Design preference:</strong> <span class="preference">Traditional</span> <span class="preference">Country</span></p>
-                        <p>A well-lit, elegant kitchen interior with white cabinetry, marble countertop, and wooden accents.</p>
-                        <a href="projectUpdate.html" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-                    </div>
-
-                    <div class="design hidden">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <img src="images/c4.jpg" style="height: 250px; width: 500px;">
-                            </div>
-                        </div>
-                        <h2>Bright Oasis</h2>
-                        <p class="specialty"><strong>Design preference:</strong> <span class="preference">Traditional</span> <span class="preference">Country</span></p>
-                        <p>A cozy and bright living area with a mix of modern and bohemian elements, featuring large windows, wooden accents, and abstract art.</p>
-                        <a href="projectUpdate.php" class="consult">Edit</a>
-                        <a href="request-consultation.html" class="consult">Delete</a>
-                    </div>
-                    
-                </div>
-            </div>-->
-<?php echo'</div></div>';?>
 
 
 
@@ -215,64 +189,32 @@
                                     mysqli_query($connection, $rType);
                                     mysqli_query($connection, $dCategory);
                                     
-                                    echo"<tr>";
+                                    echo '<tr id="row'.$id.'">';
                                     
                                         if($resultsName = mysqli_query($connection, $cName)){
-                                            while ($rowName = mysqli_fetch_assoc($resultsName)){
-                                                echo'<td>'.$rowName['f'].' '.$rowName['l'].'</td>'; // client name
-                                        }}
+                                            $rowName = mysqli_fetch_assoc($resultsName);
+                                            echo'<td>'.$rowName['f'].' '.$rowName['l'].'</td>'; // client name
+                                        }
                                         if($resultsType = mysqli_query($connection, $rType)){
-                                            while ($rowType = mysqli_fetch_assoc($resultsType)){
-                                                echo'<td>'.$rowType["type"].'</td>'; // room type
-                                        }}
+                                            $rowType = mysqli_fetch_assoc($resultsType);
+                                            echo'<td>'.$rowType["type"].'</td>'; // room type
+                                        }
                                         echo'<td>'.$row["roomWidth"].'x'.$row["roomLength"].'m</td>'; //done                                        
                                         if($resultsCate = mysqli_query($connection, $dCategory)){
-                                            while ($rowCate = mysqli_fetch_assoc($resultsCate)){
-                                                echo'<td>'.$rowCate["category"].'</td>'; // Design Category
-                                        }}
+                                            $rowCate = mysqli_fetch_assoc($resultsCate);
+                                            echo'<td>'.$rowCate["category"].'</td>'; // Design Category
+                                        }
                                         echo'<td>'.$row["colorPreferences"].'</td>'; //done
                                         echo'<td>'.$row["date"].'</td>';
-                                        
-                                        
-                                        
-                                        
+
+                                        //buttons
                                         echo '<th><a class="provide-decline" href="designconsultation.php?requestID='.$id.'">Provide Consultation</a></th>';
-                                        //$prov = 'UPDATE designconsultationrequest SET statusID=3 WHERE id='.$row['id'].'';
-                                        echo '<th><a class="provide-decline" href="declineConsultation.php?requestID='.$id.'">Decline Consultation</a></th>';
-//                                        echo '<th>';
-//                                        echo '<form method="post">';
-//                                        echo '<input type="hidden" name="request_id" value="' . $row['id'] . '">';
-//                                        echo '<button type="submit" name="decline" class="provide-decline" style = "background-color: #4B4D43;   border: none; font-family: Amiri, serif; font-weight: bold; font-size: 16px;">Decline Consultation</button>';
-//                                        echo '</form>';
-//                                        echo '</th>';
-                                        
+                                        echo '<th><a id="edit_row'.$id.'" class="provide-decline edit_row" onclick="edit_row('.$id.');">Decline Consultation</a></th>';
                                     echo"</tr>";
                                 }
                             }                            
                         ?>
                         
-                        
-<!--                        <tr>
-                            <td>Dalal Aldugaither</td>
-                            <td>Living Room</td>
-                            <td>5x6m</td>
-                            <td>Modern</td>
-                            <td>Beige and Green</td>
-                            <td>28/1/2024</td>
-                            <th><a class="provide-decline" href="designConsultation.html">Provide Consultation</a></th>
-                            <th><a class="provide-decline" href="">Decline Consultation</a></th>
-                        </tr>
-
-                            <tr>
-                            <td>Reem Alshagran</td>
-                            <td>Study Room</td>
-                            <td>4x5m</td>
-                            <td>Bohemian</td>
-                            <td>Beige and Orange</td>
-                            <td>9/1/2024</td>
-                            <th><a class="provide-decline" href="designConsultation.html">Provide Consultation</a></th>
-                            <th><a class="provide-decline" href="">Decline Consultation</a></th>
-                        </tr>-->
                     </tbody> 
                 </table>
             </div>

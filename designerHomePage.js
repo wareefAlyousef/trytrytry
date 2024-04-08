@@ -1,3 +1,4 @@
+//animation
 const observer = new IntersectionObserver((enteries) => {
   enteries.forEach((entry) =>{
     console.log(entry)
