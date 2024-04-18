@@ -150,11 +150,36 @@
                                     }
 //                                    
                                     echo'<a href="projectUpdate.php?projectId='.$row["id"].'" class="consult" name="'.$row["projectName"].'" id="'.$row["projectName"].'">Edit</a>';
-                                    echo '<a href="deleteProject.php?projectId='.$row["id"].'" name = "deleteProject" class="consult">Delete</a>';
-                                echo'</div>';
+                                    echo '<a href="javascript:void(0)" name = "deleteProject" class="consult" onclick="deleteproject('.$row["id"].')">Delete</a>';                                echo'</div>';
                             } 
                             echo'</div></div>';
                         ?>
+                                       <script>       function deleteproject(id){
+        $(document).ready(function(){
+
+          $.ajax({
+            
+            url: 'deleteProject.php',
+            type: 'POST',
+            data: {
+              id: id,
+              action: "delete"
+            },
+            success:function(response){
+              // Response is output of php file
+              if(response == 1){
+                alert("Data Deleted Successfully");
+                $('div[id="' + id + '"]').remove();
+
+              }
+              else if(response == 0){
+                alert("Data Cannot Be Deleted");
+              }
+            }
+          });
+        });
+      }
+                    </script>
 
 
 
