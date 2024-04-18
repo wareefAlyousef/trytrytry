@@ -130,7 +130,7 @@
                             $result = mysqli_query($connection, $sql);
                             
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo'<div class="design hidden">';
+                                echo'<div class="design hidden" id="'.$row["id"].'">';
                                 
                                     echo'<div class="slider-container"> <div class="slider-wrapper">';
                                         echo '<img src="images/'.$row["projectImgFileName"].'" style="height: 250px; width: 500px;" >';
