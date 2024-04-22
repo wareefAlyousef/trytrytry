@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connection = mysqli_connect("localhost", "root", "root", "webdb");
+include 'databaseConnection.php';
 
 if (isset($_POST['id'])) {
     $projectId = $_POST['id'];

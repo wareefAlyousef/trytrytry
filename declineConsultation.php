@@ -1,11 +1,12 @@
 <?php
 session_start();
-$connection = mysqli_connect("localhost", "root", "root", "webdb");
 
-if(mysqli_connect_error()){
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit();    
-} 
+include 'databaseConnection.php';
+
+if($error != null){
+    echo '<p> cant connect to DB';
+}             
+else{  
     if (!isset($_SESSION['userID'])) {
             echo "<script>alert('You are not logged in, please login or sign up first');</script>";
             echo "<script>window.location = 'index.php';</script>";
@@ -25,6 +26,8 @@ if(mysqli_connect_error()){
         }
     exit();
 }
+
+    }
 
 
 

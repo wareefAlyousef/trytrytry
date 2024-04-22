@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    $connection = mysqli_connect("localhost", "root", "root", "webdb");
-    $error = mysqli_connect_error();
+include 'databaseConnection.php';
+
     if ($error != null) {
         echo json_encode(['error' => 'Cannot connect to DB']);
     } else {

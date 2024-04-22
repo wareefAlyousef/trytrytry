@@ -1,7 +1,7 @@
 <?php
 session_start();
-$connection = mysqli_connect("localhost", "root", "root", "webdb");
-$error = mysqli_connect_error();
+include 'databaseConnection.php';
+
 if ($error != null) {
     echo '<p> cant connect to DB</p>';
 } else {
