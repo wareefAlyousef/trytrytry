@@ -2,9 +2,7 @@
 session_start();
 
 // Establish a database connection
-$connection = mysqli_connect("localhost", "root", "root", "webdb");
-$error = mysqli_connect_error();
-
+include 'databaseConnection.php';
 if ($error != null) {
     echo '<p>Can\'t connect to DB';
 } else {
